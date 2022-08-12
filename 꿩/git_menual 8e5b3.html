@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>git_menual</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c83c8ce4-3786-4da3-8f46-32df6015db71" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💁</span></div><h1 class="page-title">git_menual</h1></header><div class="page-body"><nav id="11a00523-466d-4bf5-b806-64281f8aeea0" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7941e4cd-d1fe-41bd-95a5-241241f30c43">1. git-local(로컬 저장소)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#66cf0810-d963-412a-992c-c7e5ea0ce146">2. git-hub(원격저장소)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a20ed7c0-2bd4-475b-98e8-b552fcbfc7a5">3. 로컬과 원격연결</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cc6a5540-c252-40f6-b05b-b49b491056c1">4. 로컬저장소 파일변경</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3be42c90-e4a8-4ef7-a680-f118d0ea2e01">5. 원격저장소의 변경내역 가져오기</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#88358997-67da-4bed-a788-26cd097ce816">6. 소스트리 사용</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#14614376-f778-49e3-8ed9-6007258de0cf">7. 기타 깃 명령어</a></div></nav><p id="c7007192-787a-4ef4-a368-1ff924016af8" class="">
+</p><ul id="efb9da8e-244e-4834-911a-8bd536cecf61" class="bulleted-list"><li style="list-style-type:disc">포토샵의 히스토리 패널 처럼 파일의 변경내용을 기록하여 저장,복원 해주는 시스템</li></ul><ul id="147d02a8-4a18-4efc-8732-d4d04b13afa8" class="bulleted-list"><li style="list-style-type:disc">로컬과 리모트 저장소를 관리할수 있으며
+로컬저장소는 git-scm
+리모트저장소는 git-hub 를 이용한다.</li></ul><p id="dd908f0f-7f94-4161-9c95-4498f6cbe65b" class="">
+</p><hr id="cab6ae5b-d334-4da2-8e61-6aaa8903fc99"/><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="d9a3eacb-5320-47e4-bb34-039cde530e26"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">GIT 이란?<ul id="dbcc23ce-3dab-4232-85cd-5ba350e90ed8" class="toggle"><li><details open=""><summary>01</summary><figure id="7417effb-46f6-4dd7-8216-8da47a18ea00"><div class="bookmark source"><img style="width:1em;height:1em;margin-right:0.5em;vertical-align:text-bottom" src="https://drive-thirdparty.googleusercontent.com/64/type/application/pdf"/><a href="https://drive.google.com/file/d/17C8KoYYA9YcS9-Bg7MxFGm8GRKZ9Qu4A/view?usp=drivesdk">01_깃 시작하기.pdf</a><br/><a class="bookmark-href" href="https://drive.google.com/file/d/17C8KoYYA9YcS9-Bg7MxFGm8GRKZ9Qu4A/view?usp=drivesdk">https://drive.google.com/file/d/17C8KoYYA9YcS9-Bg7MxFGm8GRKZ9Qu4A/view?usp=drivesdk</a></div></figure></details></li></ul><ul id="29b08801-59f2-413f-ad8d-5c5ec4ebd80f" class="toggle"><li><details open=""><summary>02</summary><figure id="4cca9733-9e54-479e-8eee-70115f795cb4"><div class="bookmark source"><img style="width:1em;height:1em;margin-right:0.5em;vertical-align:text-bottom" src="https://drive-thirdparty.googleusercontent.com/64/type/application/pdf"/><a href="https://drive.google.com/file/d/1qcfmTA_MMWlWvvWxQM0XCLidcXKW-o2K/view?usp=drivesdk">02_깃으로 버전 관리하기.pdf</a><br/><a class="bookmark-href" href="https://drive.google.com/file/d/1qcfmTA_MMWlWvvWxQM0XCLidcXKW-o2K/view?usp=drivesdk">https://drive.google.com/file/d/1qcfmTA_MMWlWvvWxQM0XCLidcXKW-o2K/view?usp=drivesdk</a></div></figure></details></li></ul><ul id="abab22f4-31fa-4826-9862-e994a577392e" class="toggle"><li><details open=""><summary>깃 공식 매뉴얼</summary><p id="a06e6adb-497c-4ed1-8e76-4484fb2aae78" class=""><a href="https://git-scm.com/book/ko/v2">https://git-scm.com/book/ko/v2</a></p></details></li></ul></div></figure><h2 id="7941e4cd-d1fe-41bd-95a5-241241f30c43" class="">1. git-local(로컬 저장소)</h2><ol type="1" id="db4f6f65-2228-45d9-891f-fcda85bbe917" class="numbered-list" start="1"><li><a href="https://git-scm.com/">git-scm 설치</a></li></ol><ol type="1" id="a20892ff-0b4b-438a-bebf-01d205e0486e" class="numbered-list" start="2"><li>내 컴퓨터에 깃으로 관리할 폴더 생성<figure id="8e5b34ab-895c-4848-ad2d-7569c1c47b18" class="image"><a href="git_menual%208e5b3/Untitled.png"><img style="width:488px" src="git_menual%208e5b3/Untitled.png"/></a></figure></li></ol><ol type="1" id="6d4332af-4a2f-46ce-8739-cf61c9b935fc" class="numbered-list" start="3"><li>생성한 폴더로 들어간후 우클릭하여 git bash 열기<ul id="5bbb017b-77aa-4b21-b81e-fd639e3b7397" class="block-color-orange_background toggle"><li><details open=""><summary>cli 입력창 띄우기 두가지 방법</summary><ol type="1" id="0134f26a-b955-47da-82c5-7593b43c10cd" class="numbered-list" start="1"><li>vscode<figure id="b600ace9-10d6-48b7-acdb-fdc62f39d55d" class="image"><a href="git_menual%208e5b3/Untitled%201.png"><img style="width:976px" src="git_menual%208e5b3/Untitled%201.png"/></a></figure></li></ol><ol type="a" id="fa06895a-2d96-41b5-97ed-b0ef431492b6" class="numbered-list" start="2"><li>git bash<figure id="f94cf681-eb35-4e1d-95a0-94face8c4c90" class="image"><a href="git_menual%208e5b3/Untitled%202.png"><img style="width:669px" src="git_menual%208e5b3/Untitled%202.png"/></a></figure></li></ol></details></li></ul><figure id="63b6fe57-25be-418f-b7cf-a044ef2f1c7b" class="image"><a href="git_menual%208e5b3/Untitled%203.png"><img style="width:508px" src="git_menual%208e5b3/Untitled%203.png"/></a></figure></li></ol><p id="03c4b382-0420-4654-9d67-937293fee504" class="">3. 깃폴더 초기화  <code>$ git init</code></p><figure id="fb5f0001-3d28-4b95-8ea0-bcb84a961f47" class="image"><a href="git_menual%208e5b3/Untitled%204.png"><img style="width:817px" src="git_menual%208e5b3/Untitled%204.png"/></a></figure><ol type="1" id="11f8bbad-3388-4e4b-a8e1-5c91604ad4cb" class="numbered-list" start="4"><li>파일생성<code>$ touch sample.txt</code></li></ol><figure id="31ac83f9-7856-4b3e-aa95-692e4152059c" class="image"><a href="git_menual%208e5b3/Untitled%205.png"><img style="width:831px" src="git_menual%208e5b3/Untitled%205.png"/></a></figure><ol type="1" id="a7e630f8-bf41-4ca8-8179-2178fca7ee0a" class="numbered-list" start="5"><li>깃 상태확인  <code>$git status</code></li></ol><figure id="a5ec3b0d-06dd-41f7-9fb1-953e3b63e95a" class="image"><a href="git_menual%208e5b3/Untitled%206.png"><img style="width:853px" src="git_menual%208e5b3/Untitled%206.png"/></a></figure><figure id="9659467a-03a4-4787-9b9a-4512dc47231f" class="image"><a href="git_menual%208e5b3/Untitled%207.png"><img style="width:843px" src="git_menual%208e5b3/Untitled%207.png"/></a></figure><ol type="1" id="8de428d2-2d8a-4b1d-9ec7-c9f9b759b51d" class="numbered-list" start="6"><li>깃에 파일 추가 <code>$ git add sample.txt</code><p id="161c6572-ea9a-4d8b-87a1-49600e2191c4" class="">git add .git</p><figure id="c40fbf25-58dd-47ca-acd5-cc24ad202a5e" class="image"><a href="git_menual%208e5b3/Untitled%208.png"><img style="width:870px" src="git_menual%208e5b3/Untitled%208.png"/></a></figure></li></ol><ol type="1" id="f6bc214b-b8c8-455b-8685-be685f6f1b78" class="numbered-list" start="7"><li>아까와 다른 메시지 확인됨<code> $ git status</code></li></ol><figure id="365df054-5469-4b6e-9771-55a08744df08" class="image"><a href="git_menual%208e5b3/Untitled%209.png"><img style="width:983px" src="git_menual%208e5b3/Untitled%209.png"/></a></figure><ol type="1" id="1ef2c3fa-92d7-4617-bbce-6ea67a6e0320" class="numbered-list" start="8"><li>커밋 메시지와 함께 실행<code> $ git commit -m &quot;sample txt created&quot;</code></li></ol><figure id="f0f8dfba-124b-4c53-ba41-4815d534b56a" class="image"><a href="git_menual%208e5b3/Untitled%2010.png"><img style="width:898px" src="git_menual%208e5b3/Untitled%2010.png"/></a></figure><figure id="95d853dd-36bb-4b54-9154-7ad6f6f9d0a1" class="image"><a href="git_menual%208e5b3/Untitled%2011.png"><img style="width:874px" src="git_menual%208e5b3/Untitled%2011.png"/></a><figcaption>[브랜치명 (커밋경로) 관리파일의 식별번호] 커밋메시지
+파일1개는 변경, 추가된거 없음, 삭제된거 없음</figcaption></figure><ol type="1" id="9ee681dc-9567-4880-8e9c-f8a4a4fab537" class="numbered-list" start="9"><li>8번과정실행시 사용자 정보 입력하라는 메시지 나올경우 사용자 정보 등록한다<ul id="55242b71-2bad-42c4-bcf8-b1cb2c90a9ed" class="toggle"><li><details open=""><summary>저장소별 정보등록</summary><p id="f7ff4cbb-040f-4cce-8861-0f9e5ba3c0cd" class=""><code>$ git config </code><code><a href="http://user.name/">user.name</a></code><code> &quot;qwerewqwerew&quot;</code></p><p id="cca26545-8167-4646-be0a-523b1b91f1e3" class=""><code>$ git config user.email &quot;</code><code><a href="mailto:qwerew0@gmail.com">qwerew0@gmail.com</a></code><code>&quot;</code></p><p id="bf9cdb8f-80b2-455c-bf53-1be0bb831534" class="">
+</p></details></li></ul><ol type="1" id="b4d21048-6a9c-45ef-80ca-1873247554a6" class="numbered-list" start="1"><li><code>$ git config --global user.email 깃허브에 등록한 이메일주소</code>
+<figure id="6219685e-2651-4287-8770-4a16b5c595c6" class="image"><a href="git_menual%208e5b3/Untitled%2012.png"><img style="width:882px" src="git_menual%208e5b3/Untitled%2012.png"/></a></figure></li></ol><ol type="a" id="69d84695-a162-4cce-8ac3-e05f9a7c0934" class="numbered-list" start="2"><li> <code>$ git config --global user.name 깃허브 사용자이름</code><figure id="18fa06bd-71e1-41fb-bd43-82b05c3ea7b0" class="image"><a href="git_menual%208e5b3/Untitled%2013.png"><img style="width:875px" src="git_menual%208e5b3/Untitled%2013.png"/></a></figure></li></ol></li></ol><hr id="523ebd48-ef66-496e-b7eb-a3e60241c61b"/><h2 id="66cf0810-d963-412a-992c-c7e5ea0ce146" class="">2. git-hub(원격저장소)</h2><ol type="1" id="ad30b480-8c61-4ff7-9cfe-4e263bee0c4e" class="numbered-list" start="1"><li><a href="https://github.com/">깃허브회원가입</a></li></ol><ol type="1" id="da3bc396-dd0c-4bae-849c-41d6392cd555" class="numbered-list" start="2"><li>레파지토리 생성<figure id="a496fd2c-c3d4-418e-a927-3fca4be41a7c" class="image"><a href="git_menual%208e5b3/Untitled%2014.png"><img style="width:871px" src="git_menual%208e5b3/Untitled%2014.png"/></a></figure><figure id="3c962953-d108-4fd2-bc63-c6a4c0bdb288" class="image"><a href="git_menual%208e5b3/Untitled%2015.png"><img style="width:778px" src="git_menual%208e5b3/Untitled%2015.png"/></a></figure></li></ol><p id="fb7117b1-c65a-4019-b5d2-2aaddf42f9c6" class="">
+</p><hr id="bd7a48f6-02fd-49de-9657-3eb3893587a8"/><h2 id="a20ed7c0-2bd4-475b-98e8-b552fcbfc7a5" class="">3. 로컬과 원격연결</h2><ol type="1" id="e02b951a-d636-43ec-8e45-9a999ce7cb40" class="numbered-list" start="1"><li>깃허브 레파지토리의 명령어 복사
+<code>git remote add origin 깃허브 레파지토리 주소</code><figure id="3baa274d-82e1-47a2-9a44-48a8fbdc5eb6" class="image"><a href="git_menual%208e5b3/Untitled%2016.png"><img style="width:825px" src="git_menual%208e5b3/Untitled%2016.png"/></a></figure><figure id="74e89b2a-755d-49fe-b1cb-abfe49054dc5" class="image"><a href="git_menual%208e5b3/Untitled%2017.png"><img style="width:953px" src="git_menual%208e5b3/Untitled%2017.png"/></a><figcaption>Paste
+</figcaption></figure></li></ol><ol type="1" id="4bab2441-c2a8-48e7-b113-9b13757fdb04" class="numbered-list" start="2"><li>원격서버에 로컬파일 업로드 <code>git push origin main</code></li></ol><ul id="1cdda928-7427-4f02-a26a-53eeb5f909ad" class="toggle"><li><details open=""><summary>오류1 :error: src refspec main does not match any</summary><p id="2a5d7317-11a0-4a22-977c-0e6bef5e0394" class="">$ <code>git branch -m master main</code>   브랜치명 변경</p></details></li></ul><ul id="6bffe74c-1044-4acf-b460-108b71f9de93" class="toggle"><li><details open=""><summary>오류2 : remote: Permission to qwerewqwerew/test.git</summary><p id="9d4d12c6-a658-4998-ac02-c50385084333" class="">$ git remote set-url origin https://토큰값@github.com/깃레파지토리주소</p><p id="f53135a9-f5f1-4d08-b5f5-8575095c6bd4" class="">
+</p></details></li></ul><figure id="491b48f7-a110-4072-a1d0-0ca703ad9354" class="image"><a href="git_menual%208e5b3/Untitled%2018.png"><img style="width:720px" src="git_menual%208e5b3/Untitled%2018.png"/></a><figcaption>성공메시지</figcaption></figure><ol type="1" id="310500c6-2373-4d7e-9bb5-e9a55c74144b" class="numbered-list" start="3"><li>깃허브 계정에 sample.txt 확인</li></ol><figure id="c7bc89d2-363e-43fd-ac4d-cfafc44af053" class="image"><a href="git_menual%208e5b3/Untitled%2019.png"><img style="width:668px" src="git_menual%208e5b3/Untitled%2019.png"/></a></figure><hr id="22a2b8cf-c91f-4e01-8cbf-3b6cab02c3d8"/><h2 id="cc6a5540-c252-40f6-b05b-b49b491056c1" class="">4. 로컬저장소 파일변경</h2><ol type="1" id="9f927c6b-45e7-495f-9ba2-839e7bc50e84" class="numbered-list" start="1"><li>sample.txt 를 수정한다<figure id="e97d16bb-1558-42c2-adfc-b202a1d1b00d" class="image"><a href="git_menual%208e5b3/Untitled%2020.png"><img style="width:408px" src="git_menual%208e5b3/Untitled%2020.png"/></a></figure></li></ol><ol type="1" id="553bdb24-aba7-4ec8-ad6f-c0e6a23c5742" class="numbered-list" start="2"><li>스테이지에 올리기 <code>git add .</code>  (작업폴더의 모든 변경사항 올린다)<figure id="aebfe791-8c67-4eff-a3e9-3af10f646d78" class="image"><a href="git_menual%208e5b3/Untitled%2021.png"><img style="width:447px" src="git_menual%208e5b3/Untitled%2021.png"/></a></figure></li></ol><ol type="1" id="c6c3f63c-6d1c-4c57-8fe5-85a7a1d359be" class="numbered-list" start="3"><li>커밋 실행  <code>git commit -m &quot;김망고 메인수정&quot;</code><figure id="95b5f74d-cd64-4b62-ba42-b35d8d7febef" class="image"><a href="git_menual%208e5b3/Untitled%2022.png"><img style="width:485px" src="git_menual%208e5b3/Untitled%2022.png"/></a></figure></li></ol><ol type="1" id="d7ab25ac-81cd-4283-9a80-0cbdc939714a" class="numbered-list" start="4"><li><code>git push origin [master:로컬저장소의 브랜치명] </code>으로 올린다<figure id="c6681f8c-8e76-4668-87ba-d11714ce568b" class="image"><a href="git_menual%208e5b3/Untitled%2023.png"><img style="width:468px" src="git_menual%208e5b3/Untitled%2023.png"/></a></figure></li></ol><ul id="3059d825-2b01-457f-8ddd-92e86d810863" class="toggle"><li><details open=""><summary>에러: fatal: The current branch main has no upstream branch.</summary><p id="9ddc46db-31db-476d-8db7-87a4c93f6ed6" class="">원격저장소 명을 작성안했을때 뜨는 오류git</p><p id="f278d988-6d6d-4c51-b92e-a4b5d65579c7" class="">git remote -v 로 원격저장소 이름을 찾은후 </p><p id="5837bb91-a9de-4756-a375-1d5f7333a475" class="">git push 원격저장소명 브랜치명  으로 실행</p></details></li></ul><ol type="1" id="97acc41a-2350-4098-9468-14ca4cdc34ef" class="numbered-list" start="5"><li>깃허브에 확인<figure id="6faa5eee-16ea-464b-9a6d-b15dba327261" class="image"><a href="git_menual%208e5b3/Untitled%2024.png"><img style="width:608px" src="git_menual%208e5b3/Untitled%2024.png"/></a></figure><p id="e3db6c6e-923e-416a-a443-46e9ed4fd396" class="">히스토리를 클릭하여 원하는 지점으로 되돌릴수 있다.</p><figure id="1bdb160e-fc24-4218-a1df-b6bfcdb1ddbe" class="image"><a href="git_menual%208e5b3/Untitled%2025.png"><img style="width:600px" src="git_menual%208e5b3/Untitled%2025.png"/></a></figure></li></ol><hr id="f4c2c8fa-afae-4de7-b611-46f4bf76ae8d"/><h2 id="3be42c90-e4a8-4ef7-a680-f118d0ea2e01" class="">5. 원격저장소의 변경내역 가져오기</h2><ol type="1" id="f5bf9746-b880-4126-9c32-47a3c0172cda" class="numbered-list" start="1"><li>원격저장소 파일수정<figure id="fa119dd1-59bd-4862-ad18-cefae584be4e" class="image"><a href="git_menual%208e5b3/Untitled%2026.png"><img style="width:600px" src="git_menual%208e5b3/Untitled%2026.png"/></a></figure></li></ol><ol type="1" id="0c8f112a-734e-4330-a44e-39776d028d4d" class="numbered-list" start="2"><li>파일변경 → 커밋메시지입력 → 커밋버튼 클릭</li></ol><figure id="b09761eb-a2c6-4761-8413-5b9fef8634b7" class="image"><a href="git_menual%208e5b3/Untitled%2027.png"><img style="width:600px" src="git_menual%208e5b3/Untitled%2027.png"/></a></figure><ol type="1" id="858209ac-d104-442a-ad06-45c52eb40370" class="numbered-list" start="3"><li>원격저장소와 로컬저장소의 파일 내용이 서로 다르다<figure id="e839aa64-6e15-420d-bbb6-d4f99178704a" class="image"><a href="git_menual%208e5b3/Untitled%2028.png"><img style="width:594px" src="git_menual%208e5b3/Untitled%2028.png"/></a></figure></li></ol><ol type="1" id="49a59101-a00e-463b-9465-0509a33a2fd7" class="numbered-list" start="4"><li>로컬의 파일을 변경후 저장<figure id="66911784-4d69-45ec-8497-bd93d36142bd" class="image"><a href="git_menual%208e5b3/Untitled%2029.png"><img style="width:341px" src="git_menual%208e5b3/Untitled%2029.png"/></a></figure></li></ol><ol type="1" id="f5eb9080-b6fd-42a9-8b41-f196bffa1238" class="numbered-list" start="5"><li>add, commit, push 해본다<figure id="0a94d174-ce68-4d90-b16b-9812250af806" class="image"><a href="git_menual%208e5b3/Untitled%2030.png"><img style="width:584px" src="git_menual%208e5b3/Untitled%2030.png"/></a><figcaption>거부됨 // 로컬의 파일버전과 원격의 파일버전이 다를때 뜨는 오류</figcaption></figure></li></ol><ol type="1" id="f8c62583-cc18-4eaa-ad9c-aa31a63115c7" class="numbered-list" start="6"><li>원격파일 받아오기 <code>git pull origin main</code><figure id="c0a2b38b-2999-45e9-8d61-38e50c593be4" class="image"><a href="git_menual%208e5b3/Untitled%2031.png"><img style="width:528px" src="git_menual%208e5b3/Untitled%2031.png"/></a><figcaption>충돌 났다는 메시지확인됨</figcaption></figure></li></ol><ol type="1" id="1a1954ef-9781-4dc6-b9d3-4e59141f97da" class="numbered-list" start="7"><li>로컬의 sample.txt 열어본다<figure id="f04fddfe-6603-43c5-9415-a81e7713bf3b" class="image"><a href="git_menual%208e5b3/Untitled%2032.png"><img style="width:524px" src="git_menual%208e5b3/Untitled%2032.png"/></a></figure></li></ol><ol type="1" id="b6de7e5f-0023-4e18-b20e-66c1637754bf" class="numbered-list" start="8"><li>sample.txt 파일 수정<figure id="84edf6cc-fbda-47d7-9cf2-c1d8b2ed997c" class="image"><a href="git_menual%208e5b3/Untitled%2033.png"><img style="width:405px" src="git_menual%208e5b3/Untitled%2033.png"/></a></figure></li></ol><ol type="1" id="23b18984-8de9-4ebb-adea-40d58b137ac4" class="numbered-list" start="9"><li>add,commit,push 실행<figure id="98097faf-2100-43c8-8c82-5cac771dd4e8" class="image"><a href="git_menual%208e5b3/Untitled%2034.png"><img style="width:531px" src="git_menual%208e5b3/Untitled%2034.png"/></a></figure><figure id="f802cce2-9366-4bfa-bb3d-94a8bc43238a" class="image"><a href="git_menual%208e5b3/Untitled%2035.png"><img style="width:406px" src="git_menual%208e5b3/Untitled%2035.png"/></a><figcaption>깃허브 최종확인</figcaption></figure></li></ol><h2 id="88358997-67da-4bed-a788-26cd097ce816" class="">6. 소스트리 사용</h2><ol type="1" id="2ad8dbc6-2d33-4002-99ee-13d798badf75" class="numbered-list" start="1"><li><a href="https://www.sourcetreeapp.com/">https://www.sourcetreeapp.com/</a><ul id="52a83b30-58fd-4066-971e-2409c35904ec" class="toggle"><li><details open=""><summary>설치과정</summary><figure id="b5a4ead2-2466-411e-b755-ce50b293c9f6" class="image"><a href="git_menual%208e5b3/Untitled%2036.png"><img style="width:600px" src="git_menual%208e5b3/Untitled%2036.png"/></a></figure></details></li></ul></li></ol><ol type="1" id="fcf6dab9-ca49-4316-a302-c53758e44995" class="numbered-list" start="2"><li>레파지토리생성</li></ol><figure id="d64ae84a-edb3-48c7-86bc-5b554348aaa5" class="image"><a href="git_menual%208e5b3/Untitled%2037.png"><img style="width:766px" src="git_menual%208e5b3/Untitled%2037.png"/></a></figure><ol type="1" id="c330cd08-2725-4940-9ba2-0717fe811cde" class="numbered-list" start="1"><li>원격서버 사용자 등록</li></ol><figure id="e3b01eed-4996-4870-9fc8-1f8a2f58e9de" class="image"><a href="git_menual%208e5b3/Untitled%2038.png"><img style="width:807px" src="git_menual%208e5b3/Untitled%2038.png"/></a></figure><ol type="1" id="74e8d49d-993f-4e3d-b117-d16dedbc9f9e" class="numbered-list" start="2"><li>로컬저장소 생성<figure id="04a61338-9733-4347-96b3-bbf5a67f18e1" class="image"><a href="git_menual%208e5b3/Untitled%2039.png"><img style="width:843px" src="git_menual%208e5b3/Untitled%2039.png"/></a></figure><figure id="4d3ac672-aaef-4236-8186-ce8c6edf1032" class="image"><a href="git_menual%208e5b3/Untitled%2040.png"><img style="width:655px" src="git_menual%208e5b3/Untitled%2040.png"/></a></figure></li></ol><p id="be29e666-3776-4f9c-8f3e-6a8c61a04a1f" class="">2. 로컬 저장소에 파일생성후 원격으로 올리기</p><figure id="8a85822c-8fbf-4c72-aa98-7d6d648718e7" class="image"><a href="git_menual%208e5b3/Untitled%2041.png"><img style="width:670px" src="git_menual%208e5b3/Untitled%2041.png"/></a></figure><ol type="1" id="e683b716-3c04-478c-8d3b-2d975abd7a9a" class="numbered-list" start="3"><li>소스트리확인</li></ol><figure id="1bfc68e2-eb98-4108-b355-faf4c43ee86c" class="image"><a href="git_menual%208e5b3/Untitled%2042.png"><img style="width:1212px" src="git_menual%208e5b3/Untitled%2042.png"/></a></figure><ol type="1" id="596fb9e0-121f-4f9b-b32a-5228eaebef12" class="numbered-list" start="4"><li>커밋, 푸시<figure id="946a4ed6-0028-497b-ba18-a464273b7d11" class="image"><a href="git_menual%208e5b3/Untitled%2043.png"><img style="width:1231px" src="git_menual%208e5b3/Untitled%2043.png"/></a></figure><ol type="1" id="f766b7dc-4021-44ce-a8c3-01258cb55244" class="numbered-list" start="5"><li>히스토리와 깃허브 확인</li></ol><figure id="21c80931-9b33-4f74-bbb4-e7b57648fcbd" class="image"><a href="git_menual%208e5b3/Untitled%2044.png"><img style="width:694px" src="git_menual%208e5b3/Untitled%2044.png"/></a></figure><figure id="b5f72541-eeb6-4a6a-839d-5d76b99ba7c8" class="image"><a href="git_menual%208e5b3/Untitled%2045.png"><img style="width:1147px" src="git_menual%208e5b3/Untitled%2045.png"/></a></figure><ol type="1" id="8153b461-04f5-4205-abad-f30fe8a11349" class="numbered-list" start="6"><li>깃허브 파일수정</li></ol><figure id="acf59d9e-b1b5-4496-99f0-a898bfe1abdb" class="image"><a href="git_menual%208e5b3/Untitled%2046.png"><img style="width:600px" src="git_menual%208e5b3/Untitled%2046.png"/></a></figure><ol type="1" id="26fa81b8-a372-4b01-9dc5-be2e4a721b63" class="numbered-list" start="6"><li>받아오기</li></ol><figure id="adc8ed21-be30-4343-85ae-8109cdd89714" class="image"><a href="git_menual%208e5b3/Untitled%2047.png"><img style="width:1019px" src="git_menual%208e5b3/Untitled%2047.png"/></a></figure><ol type="1" id="11d19ff5-aa82-45dd-9ed9-4f0613822a31" class="numbered-list" start="7"><li>소스트리 확인<figure id="bd41d3cf-3e0c-4fc6-bab4-17f7787302f1" class="image"><a href="git_menual%208e5b3/Untitled%2048.png"><img style="width:1016px" src="git_menual%208e5b3/Untitled%2048.png"/></a></figure></li></ol><ol type="1" id="bf5d4019-e5aa-400f-855e-1a07d9ad4592" class="numbered-list" start="8"><li>로컬에서 파일 생성후 여러개의 파일 푸쉬해보기</li></ol><figure id="b16968d2-107c-4e65-96ca-9e2e39dd9743" class="image"><a href="git_menual%208e5b3/Untitled%2049.png"><img style="width:516px" src="git_menual%208e5b3/Untitled%2049.png"/></a></figure><hr id="d4221a3b-8544-4a87-b63e-8a86bfc67f8e"/></li></ol><h2 id="14614376-f778-49e3-8ed9-6007258de0cf" class="">7. 기타 깃 명령어</h2><p id="f994017e-f3d6-4914-813f-d1278d1ef4c7" class=""><div class="indented"><h3 id="c3dac5f3-07a1-4be3-8085-000c6bdd817a" class="">a. 깃 로컬 삭제</h3><p id="7e7fa58c-bf25-431d-ab75-46f300b888f7" class=""><code>$ rm -rf .git</code></p><h3 id="bfba97a2-9a79-4cd3-b565-2c4ba89f7ec4" class="">b. <strong>커밋 히스토리 확인</strong></h3><p id="5c650fe2-57ef-48cf-9c64-e93abd4779db" class=""><code>$ git log</code></p><h3 id="8b25f166-e2c2-4ab2-979c-a57214196848" class="">c. 사용자 정보확인</h3><p id="7cd89e80-a2c6-45e1-b9ce-a8df6c9c9b51" class=""><code>$ git config —list</code></p><p id="0b945ee8-fc97-4379-a35a-37d0e2960f71" class="">
+</p><h3 id="75ad98d5-1c27-475c-82e1-82836c327801" class="">d. 브랜치명 변경</h3><p id="e9ebe544-56d3-4e11-b432-99c48de5c0a3" class=""><code>$ git branch -m [OLD_BRANCH] [NEW_BRANCH]</code></p><h3 id="6a9ea7e8-e5f7-489e-b7c6-f75b00a929ae" class="">e. 원격저장소 연결/끊기</h3><p id="846d3ca1-14fd-4949-b271-71d8a78981cf" class="">확인 <code>$ git remote -v</code></p><p id="df4e3bfd-d88c-47d3-8664-5cf49c6ec89e" class="">제거 <code>$ git remote remove origin</code></p><p id="588a066a-27dc-481f-868c-02c1428f7b21" class="">연결 <code> $ git remote add origin 레파지토리주소</code></p><h3 id="868933a0-b6b0-495a-a921-087f15485cf8" class="">f. 원격저장소 복제</h3><p id="3cdcc915-eac5-487d-9fea-f09e26f2aa86" class=""><code>git clone 레파지토리주소</code></p><p id="385aaf82-4d93-4c36-a581-a5b31db16bb1" class="">
+</p></div></p><figure id="76c3bd4c-1144-42ed-bc84-496ea62d9ec2" class="link-to-page"><a href="git_menual%208e5b3/ES6%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B8%2076c3b.html"><span class="icon">🧨</span>ES6 문법 익히기</a></figure></div></article></body></html>

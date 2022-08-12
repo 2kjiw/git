@@ -1,0 +1,804 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ES6 문법 익히기</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="76c3bd4c-1144-42ed-bc84-496ea62d9ec2" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🧨</span></div><h1 class="page-title">ES6 문법 익히기</h1></header><div class="page-body"><p id="ca7a7702-da23-4796-a645-cf786f690c67" class=""><strong>[목차]</strong></p><nav id="e775c22c-727b-407d-8fa8-118f0ec65cbd" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#adb52b06-c927-480b-b261-162396697f4c">Javascript의 역사</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#39b9d63d-aa9d-45e0-b7bf-c6fc8d64f6f3">ES6 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8192fc05-c317-4f7c-a0ff-e829adba3427">Template Literal</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#01d8ab24-2b39-458c-976d-c8532409b8d4">Desturcturing(구조 분해 할당)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3c909469-b60e-46fc-9b0c-75744b76ab73">map, forEach</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d3f6c065-9691-4f39-8f18-0a4939dea038">Lambda Function(람다 함수)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b447231d-a0fe-4276-9011-f15882050f68">conditional ternary operator(3항 연산자)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a7ecd752-658a-4857-a390-11d4cf5c354b"><strong>export, import</strong></a></div></nav><h1 id="adb52b06-c927-480b-b261-162396697f4c" class="">Javascript의 역사</h1><figure id="40e39bf6-a8ce-423d-bcef-b2c5feabeea3" class="image"><a href="ES6%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B8%2076c3b/Untitled.png"><img style="width:1117px" src="ES6%20%E1%84%86%E1%85%AE%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B8%2076c3b/Untitled.png"/></a><figcaption>자바스크립트가 사용된 최초의 브라우저 &#x27;Netscape Navigator&#x27;</figcaption></figure><p id="74b9df41-b70a-4d0f-9cfb-6e1acfda3fde" class="">자바스크립트는 1990년대 Netscape 회사에서 Brendan Eich라는 사람에 의해  최초 개발되었습니다. 이후 MS에서 IE 브라우저에 Jscript라는 언어를 탑재하면서 표준을 필요로 하기 시작했습니다.</p><p id="09059d0a-0788-469c-851b-80636054db7e" class="">해당 표준을 <code>EcmaScript</code> 라고 하고 javascript는 이 표준에 따라 발전해왔습니다. EcmaScript를 줄여서 <code>ES</code> 라고 하며 ES의 버전은 계속 업데이트되고 있습니다. (현재 ES11)</p><p id="493af45d-fcf9-4676-a0eb-fed5b328e771" class="">
+</p><p id="f69975d8-3d1e-4539-8697-11c9e36d2426" class="">Javascript의 ES 버전은 꾸준히 올라가지만, 그렇다고 우리가 최신 버전의 문법을 꼭 알아야 할 필요는 없어요. 왜냐하면 javascript를 이용한 개발 환경(각 브라우저들, React, Node.js 등)에 따라 채택한 ES 버전이 조금씩 다르기 때문이에요. </p><p id="660586a8-dadd-4d40-8bd8-172a1ca5799e" class="">
+</p><p id="3acb4a61-e293-44e2-8285-818713917aee" class=""><strong>즉 최신 문법을 알더라도 이를 사용할 수 있는 곳이 없을 수도 있다는 말..😂</strong></p><h1 id="39b9d63d-aa9d-45e0-b7bf-c6fc8d64f6f3" class="">ES6 </h1><p id="c4f87424-97c3-42cb-8369-4efc272937b0" class="">현재 가장 대중적으로 사용되고 있는 javascript 문법입니다.</p><p id="c5e0bae4-308e-437d-9970-858f8ff8c31a" class="">우리가 이전에 배웠던 몇 가지도 사실은 ES6 문법이에요.<div class="indented"><ul id="bcde69c6-6f28-45cc-99bb-3b3db65f1c4c" class="bulleted-list"><li style="list-style-type:disc">변수 선언 : <code>let</code>, <code>const</code></li></ul><ul id="23edb524-b6dd-4f71-b422-727c87ed2aa4" class="bulleted-list"><li style="list-style-type:disc">비동기 처리 : <code>Promise</code>
+</li></ul></div></p><p id="58ea9365-9899-4809-9356-8bcefae005e0" class="">ES6 문법을 사용하면 실제로 더 편하게 코딩을 할 수 있습니다. 대부분의 메이져 브라우저, Node.js 서버 개발 등 다양한 분야에서 ES6 문법을 채택하고 있어요. </p><p id="00a91201-5e47-40e8-b7dc-67e922a8e833" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4a0d7c9f-45db-4ae4-94ce-c463fdddb44a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">하지만 그렇다고 ES6를 100% 다 지원하는 건 아니에요. 브라우저마다 지원하는 정도가 다르고 옛날 브라우저는 ES6 지원도가 낮아서 ES6로 코드를 짰다가 동작이 안 될 수도 있어요.
+
+ 그래서 우리가 ES6 최신 문법으로 코드를 짜더라도 브라우저를 위해서 옛날 버전의 javascript로 변환시켜주는 작업이 필요하죠. 이를 바로 <code>Babel</code>이라는 Transpiling(트랜스파일링) 도구을 사용합니다
+
+최신 프론트엔드를 개발하시는 분들이라면 거의 모두 Babel을 사용하여 웹을 개발합니다.</div></figure><p id="fac8d613-6732-4eae-8e3d-69367fafa520" class="">
+</p><h2 id="8192fc05-c317-4f7c-a0ff-e829adba3427" class="">Template Literal</h2><p id="bc43a86c-5497-47f6-8598-560044ba2349" class="">일반적으로 string 자료형을 조합할 때 <strong>+ 연산자</strong>를 사용합니다. 그러나 문자열을 더하는 과정이 많아지면 + 연산자가 많아지고 띄어쓰기 같은 작업을 하기가 번거롭습니다. <strong>이때 </strong><strong><code>Template Literal(템플릿 리터럴)</code></strong><strong>을 사용하면 더 쉽게 만들 수 있고 가독성이 높아집니다.</strong></p><p id="6917e874-a275-492f-b54c-4d7c3859683f" class=""><strong>특히 </strong>프론트엔드 같이 데이터를 조합해서 DOM에 적용하는 경우가 많은 경우 유용하게 사용됩니다.</p><p id="12a51963-ea0a-4c57-a2bd-6ee393ab1117" class="">
+</p><p id="491aa988-4543-4546-9dc9-7bbcd4a14d7e" class=""><strong>[기존]</strong></p><pre id="4ebb35ac-02e8-4f9b-8892-bc5ac74c1e0f" class="code code-wrap"><code>const hello =&quot;안녕&quot;;
+const introduce = &quot;나는 망고야!&quot;
+const age = 5;
+
+
+//기존 방식
+const text = hello + &quot;! &quot; + introduce + &quot; 그리고 &quot;+ age +&quot;살이야.&quot;</code></pre><p id="3b590d3b-109a-4ece-b7d6-b07664d48efc" class="">
+</p><p id="c0e9967c-6c67-48a2-a48c-37273dd3ea70" class=""><mark class="highlight-red"><strong>[Template Literal 방식]</strong></mark></p><p id="0eafd335-6325-4a4e-8a25-aefc95d83ae0" class=""><code>``</code> 안에 변수를 넣을 때 <code>${}</code>를 사용합니다. </p><pre id="2488bf74-93a8-44ed-ace8-0080a2c28d5e" class="code"><code>const newText = `${hello}! ${introudce} 그리고 ${age}살이야`</code></pre><p id="8973577a-71cd-4dfb-aa19-e19224ca7f51" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f85d2b3b-e81d-4f82-b4d9-0262acea3e89"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>`</code> 를 <code>벡틱</code>이라고 부릅니다.</div></figure><h2 id="01d8ab24-2b39-458c-976d-c8532409b8d4" class="">Desturcturing(구조 분해 할당)</h2><p id="0a07958d-9fb0-4066-a168-7d45cfd3e171" class="">객체와 배열에 들어있는 값을 가져올 때 <code>Desturcturing</code> 기능을 사용하면 손쉽게 값을 뽑아낼 수 있습니다.</p><p id="d7038864-3576-4c6a-9a1a-b571a390cad7" class="">
+</p><p id="6233bb6a-8aa0-4d9d-ae68-d50cb1357f8b" class=""><strong>[기존]</strong></p><pre id="f648345f-8520-4fea-8cd4-7ce15e6904f1" class="code code-wrap"><code>const mango = {
+	name : &#x27;망고&#x27;,
+	age : 5
+};
+const cat= [&#x27;땅콩&#x27;,&#x27;공주&#x27;]
+
+//기존
+var name = mango.name;
+var age = mango.age;
+var ddangkong= people[0];
+var gongju= people[1];</code></pre><p id="5c3900ea-84db-4500-a8de-d521fe17db20" class="">
+</p><p id="7f667d46-4d72-4ed5-b091-2f08700dd814" class=""><mark class="highlight-red"><strong>[Destructuring 방식]</strong></mark></p><pre id="add97d27-5822-4dd4-924d-e8e39cf7c154" class="code"><code>var {name, age} = mango;
+console.log(name); //망고가 출력됩니다.
+
+const [ddangkong, gongju] = cat;</code></pre><p id="5219d806-0ce1-4252-9fe6-72fb2595e677" class="">
+</p><p id="b9c8bf80-0ad5-4869-b415-c641dbca57a3" class="">
+</p><h2 id="3c909469-b60e-46fc-9b0c-75744b76ab73" class="">map, forEach</h2><p id="ec6c048b-827a-4bb4-913a-7637e00af311" class=""><code>map</code>과 <code>forEach</code> 메소드는 사실 <code>ES5</code> 에서 나온 문법이지만 중요하므로 같이 다루도록 하겠습니다.</p><p id="5977e350-dd9e-485d-bca6-ee0aef246461" class="">map, forEach는 배열에서 기본으로 제공해주는 메소드로 배열을 가공할 때 많이 사용됩니다. 기본적으로 배열을 다룰 때 <code>for</code> 를 사용했다면 이제 map, forEach로 넘어가실 차례입니다.</p><p id="9f69be92-487e-4ca7-b2d3-574a1407fbbf" class="">
+</p><p id="8684c1c5-c01a-4d48-96d6-fb48631ac511" class=""><strong>[기존]</strong></p><pre id="a24310d6-01f3-49a9-b7b7-118c8ccef3e9" class="code"><code>var products = [{
+	name : &#x27;휴지뽑기&#x27;,
+	price : 50000
+},{
+	name : &#x27;스마트공&#x27;,
+	price : 50000
+}]
+
+for(var i=0; i &lt; products.length;i++){
+	var name = products[i].name;
+	console.log(&#x27;제품 이름 : &#x27; + name);
+}</code></pre><p id="8f00e46a-7055-4068-88b3-ccb37faf9936" class="">
+</p><p id="487fa4a9-a541-4858-9223-bb6aac33f86e" class=""><mark class="highlight-red"><strong>[Array Method 방식]</strong></mark>
+이들의 콜백 함수에는 <mark class="highlight-blue_background"><strong>첫 번째 인자에는 배열에서 조회하는 값 , 두 번째 인자에는 순서(index)가 들어갑니다.</strong></mark></p><p id="3a21e9f1-ac44-44df-8e72-540bc648b6ba" class="">
+map, forEach 메소드는 모두 배열을 조회한다는 기능은 동일합니다. <strong>다만 forEach는 별다른 return이 없는 반면 map은 새로운 배열을 반환(return)합니다.</strong></p><pre id="96ed774c-f729-405f-a38d-f9bc2de68479" class="code"><code>//첫번째 파라미터에는 값, 두번째 파라미터에는 순서(index)가 들어간다.
+products.forEach(function (product, index) { 
+         console.log((index + 1) + &#x27;번째 호출&#x27;);
+         console.log(product);
+})
+
+//동일하게 조회합니다.
+products.map(function(product, index){ 
+         console.log((index + 1) + &#x27;번째 호출&#x27;);
+         console.log(product);
+});
+
+//productNames는 각 product의 name이 들어간 배열이다
+var productNames = products.map((product, index) =&gt; { 
+     return product.name;
+});
+
+//React에서는 다음과 같은 방식으로 데이터가 담긴 배열을 화면에 표시합니다.
+var productElements = products.map((product,index) =&gt;{ 
+	return (
+		&lt;div&gt;
+			&lt;span&gt;{product.name}&lt;/span&gt;
+			...
+		&lt;/div&gt;
+	)
+})</code></pre><p id="ae7bf131-c997-4efa-a179-100a8c2fee47" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0b8a6abf-b167-4693-8801-4994d1a6c53b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">이 외에도 배열 메소드는  <code>filter</code>, <code>reduce</code> 등의 배열 전용 메소드가 있습니다.
+
+[참고 링크]
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce</div></figure><p id="5ebdb036-4b53-4145-916e-462579619742" class="">
+</p><p id="617606a0-5d75-4a11-8b10-9531af601ee6" class="">
+</p><h2 id="d3f6c065-9691-4f39-8f18-0a4939dea038" class="">Lambda Function(람다 함수)</h2><p id="82d09ee0-3d09-4e2d-969d-b5ab89c66217" class="">function을 표현하는 새로운 방식인 <code>Lambda 식</code>은 <code>() ⇒ {}</code> 형식을 사용합니다. 최근 javascript를 사용하는 코드에서는 function을 이용할 때 Lambda 식으로 정의합니다. <code>arrow function</code> 이라고도 많이 부릅니다.</p><p id="071a3905-fd0a-4218-93e9-a97588e51c2c" class="">
+저는 함수를 선언할 때 람다식을 자주 사용합니다. <strong>함수를 축약해서 표현하므로 코드가 더 깔끔하며 return 구문을 생략할 수도 있다는 게 좋습니다.</strong></p><p id="1e4cc400-6dfe-4f91-b40a-0a818c47cb35" class="">
+</p><p id="3c725f9a-0ffc-4e34-8890-e9fa05a361a1" class=""><strong>[기존]</strong></p><pre id="e838b7a9-fa1d-4af5-8b7f-2658097b4181" class="code code-wrap"><code>//함수 선언식
+function getName(name){
+	return `${name} 입니다`
+}
+
+//함수 표현식
+const getName  = function(){
+	...
+}</code></pre><p id="d053dcd7-37fc-4dcd-9496-6d4f3efd6257" class="">
+</p><p id="d83614f7-fc86-4550-b94f-9e3087199ca9" class=""><mark class="highlight-red"><strong>[람다 함수 방식]</strong></mark></p><pre id="c0cf43a8-a6ef-4dbe-8632-c62a16002bfa" class="code"><code>const getName = () =&gt; {
+	
+}
+
+//람다식의 return 문을 생략할 수도 있습니다.
+const getName = (name) =&gt; `${name} 입니다`</code></pre><p id="a57e29d9-5e9a-45f2-850f-e7b078ed95dd" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="015bc6b6-eeae-4dc1-bd39-57632a96dc31"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">사실 Lambda 식과 기존 함수랑은 차이가 있습니다. 우리가 배우지 않았던 <code>this</code>라는 개념을 사용할 때 다르게 동작합니다. 
+
+<a href="https://www.youtube.com/watch?v=4ACSJlzJjJs">🔗this 공부하기</a></div></figure><p id="5c68ac5f-19e6-4ec4-8895-4cc4ac763dd9" class="">
+</p><h2 id="b447231d-a0fe-4276-9011-f15882050f68" class="">conditional ternary operator(3항 연산자)</h2><p id="bca06cf4-cb01-4632-b985-8ae5c80e4aa4" class="">3항 연산자는 <code>if</code> 조건문을 단축 형태로 사용할 수 있습니다.</p><p id="4a0d0853-7f14-486e-b6dc-b30097a35ade" class=""><strong>[기본]</strong></p><pre id="2c3b5d96-a8df-4947-8db3-dd51b4d1ce8d" class="code code-wrap"><code>const language = &#x27;javascript&#x27;;
+
+if(language === &#x27;javascript&#x27;){
+	console.log(&#x27;재밌다&#x27;)
+}else{
+	console.log(&#x27;재미없다&#x27;)
+}</code></pre><p id="672e8082-70cf-4381-8a88-0cbbd70c4a3d" class="">
+</p><p id="e78d3c05-a6fd-40c9-ad46-dc702932553c" class=""><mark class="highlight-red"><strong>[3항 연산자 방식]</strong></mark></p><p id="0ace83d7-46f3-4897-ba12-cfe1ed8df979" class=""><code>condition ? exprIfTrue : exprIfFalse</code> 구문으로 
+condition이 true라면 exprtIfTrue가 실행되고 아니라면 exprtIfFalse가 실행됩니다.</p><pre id="958277fc-e59b-4899-a996-2a6caf2078d8" class="code code-wrap"><code>language === &#x27;javascript&#x27; ? console.log(&#x27;재밌다&#x27;) : console.log(&#x27;재미없다&#x27;)
+
+//아래와 같이 많이 활용됩니다.
+const isJavascript = language === &#x27;javascript&#x27;? true : false 
+//result에 true가 들어옵니다.</code></pre><p id="e887e725-4b23-4ddc-a24e-1052e58467c5" class="">
+</p><p id="a7c76c84-ec10-4520-8ba7-e217ff09a405" class="">
+</p><h2 id="a7ecd752-658a-4857-a390-11d4cf5c354b" class=""><strong>export, import</strong></h2><p id="7cb5d135-9a45-4195-9154-93c8a8058f42" class="">기존에 html에서는 <code>&lt;script&gt; </code>태그를 활용해서 자바스크립트 파일(라이브러리)를 불러왔습니다. 
+그러나 ES6에서는 모듈을 불러오는 방식으로 <code>import</code> 를 사용합니다. </p><p id="319d7070-7716-4a1d-acdc-33daffb97cd1" class="">
+</p><p id="0eaa5c5a-981d-40e1-a3fd-b439c090c72f" class=""><strong>[기존]</strong></p><pre id="bcea3890-6944-48c7-93cc-bdf120fc4dfd" class="code code-wrap"><code>//외부 라이브러리를 불러옵니다.
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;
+
+//hello.js를 불러옵니다.
+&lt;script src=&quot;./hello.js&quot;&gt;&lt;/script&gt;</code></pre><p id="3c505038-6390-4e15-b3e1-2f0f3d9a74d0" class="">
+</p><p id="7c3503ef-626c-449d-980b-0d6e031e49cb" class=""><mark class="highlight-red"><strong>[import 방식]</strong></mark></p><pre id="950eef7d-3f8d-47dc-ab72-c3d72acf6c1c" class="code"><code>import axios from &#x27;axios&#x27;; //다운받은 axios 라이브러리를 불러옵니다. 
+import App from &#x27;./App.js&#x27; //hello.js 파일을 불러옵니다.
+import Potato from &quot;./main&quot; //import를 할때 모듈명은 자유롭게 설정이 가능합니다.</code></pre><p id="c785f514-d241-4d5e-9929-4d0cc6b09f1b" class=""><a href="https://soharu.tistory.com/11">🔗절대경로와 상대경로 파헤치기</a></p><p id="6a445a96-ea6c-4c1b-8138-96f2063a7461" class="">
+</p><p id="37e9228f-eccb-4343-a6a7-2375aad75b23" class="">반면 모듈을 내보내서 다른 곳에서 사용할 수 있게 만들 수도 있습니다. 이 때는 export를 사용합니다. 기본적으로 import를 하기 위해선 <code>export</code>가 되어있어야 합니다. 아래와 같이 말이죠.</p><pre id="dc4a37ed-14a4-44d0-a286-f9bb938794be" class="code"><code>//App.js 파일
+function App(){
+	return &lt;h1&gt;hello&lt;/h1&gt;
+}
+
+export default App; //App 함수를 외부에서 사용할 수 있도록 export 하는 것</code></pre><p id="afbb36b2-35b8-4974-a54a-c9e13aa94fec" class="">
+</p><p id="625a3d69-73bc-4a73-aef9-f6611e95a2b3" class=""><strong>[여러 객체 export &amp; import 하기]</strong></p><p id="c24bcbd8-229e-4465-b2e3-0e2ab31fa6b1" class="">위 코드에서 export 옆에 붙은 <code>default</code> 는 한가지 객체만 import하겠다는 것을 의미합니다. 하나의 파일에 여러개의 객체를 export할 수도 있습니다.</p><pre id="a2c10ccb-9a80-4318-b938-bac918b4633e" class="code code-wrap"><code>function funcA(){
+	//...
+}
+function funcB(){
+	//...
+}
+const varC = &#x27;hello&#x27;;
+export {
+		a : funcA,
+	b : funcB,
+	c : varC
+}</code></pre><p id="9712a2b7-f016-459d-9569-864df5b78b96" class="">
+</p><p id="721a0984-04ec-4d86-88d1-aed63bd9afd7" class="">import 할 때는 <code>{}</code> 를 이용합니다. </p><pre id="f207f64b-cf4e-4c95-9f9b-099437b07fb2" class="code code-wrap"><code>import {a, b, c} from &#x27;./App.js&#x27;</code></pre><p id="a33bd6b6-23a9-4399-823a-d9b89123d1bd" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="63925859-7db4-4b82-97c9-0ba2d3d89a98"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">짜인 모듈을 export, import 하는 것은 모든 프로그래밍 언어의 기본이므로 꼭 숙지하고 있어야 합니다.
+
+🔗<a href="https://ko.javascript.info/import-export">모듈 내보내고 가져오기</a></div></figure><p id="bf4a1482-04d7-4386-81be-db3f820dc1aa" class="">
+</p></div></article></body></html>
